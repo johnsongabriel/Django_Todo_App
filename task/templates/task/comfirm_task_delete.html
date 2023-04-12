@@ -1,0 +1,25 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DayToDay</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'task/delete.css' %}">
+</head>
+<body>
+    <div class="wrapper">
+        <div class="container">
+            <h3>Are you sure you want to delete: <br><span>{{items}}</span>?</h3>
+            <form method="post">
+                {% csrf_token %}
+                <div class="buttons">
+                    <a id="cancel" href="{% url 'list' %}">Cancel</a>
+                    <input id='confirm' type="submit" value="Comfirm">
+                </div>
+            </form>
+        </div>
+    </div>
+</body>
+</html>

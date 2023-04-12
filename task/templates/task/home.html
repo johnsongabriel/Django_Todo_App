@@ -1,0 +1,36 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DayToMonth</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'task/style.css' %}">
+</head>
+<body>
+    <div class="wrapper">
+        <div class="container">
+            <h2>DayToDay</h2>
+            <form method="POST" action="/">
+                {% csrf_token %}
+                <div class="add-task">
+                    <div id="createTask-Input">{{forms.title}}</div>
+                    <input type="submit" value="Create Task" class="enter">
+                </div>
+            </form>
+            {% for task in tasks %}
+                <div class="task">
+                    <a href="{% url 'update_task' task.id %}" id="update">Update</a>
+                    <a href="{% url 'delete_item' task.id %}" id="delete">Delete</a>
+                    {% if task.complete == True %}
+                    <strike>{{task}}</strike>
+                    {% else %}
+                    <span>{{task}}</span>
+                    {% endif %}
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+</body>
+</html>
